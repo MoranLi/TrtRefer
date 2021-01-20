@@ -1,5 +1,8 @@
-package com.trtrefer.banckend.data;
+package com.trtrefer.banckend.entity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User {
     private Long id;
     private String username;
