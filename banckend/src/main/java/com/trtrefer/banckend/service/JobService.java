@@ -13,19 +13,12 @@ public class JobService {
     @Autowired
     JobRepository jobRepository;
 
-    @Autowired
-    private CompanyService companyService;
-
-    public Job addJob(String jobTitle, String jobLink, String jobCodeId, String companyName){
+    public Job addJob(String jobTitle, String jobLink, String jobCodeId, Long companyId){
         Job j = new Job();
         j.setJobTitle(jobTitle);
         j.setJobLink(jobLink);
         if(jobCodeId != null){
             j.setJobCodeId(jobCodeId);
-        }
-        Long companyId = companyService.getCompany(companyName);
-        if(companyId == null){
-            return null;
         }
         j.setCompanyId(companyId);
         jobRepository.save(j);
