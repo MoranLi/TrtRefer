@@ -12,7 +12,7 @@ public class Job {
     private Long id;
     private String jobTitle;
     private String jobLink;
-    private String jobId;
+    private String jobCodeId;
     private Long companyId;
 
     public Job() {
@@ -22,7 +22,7 @@ public class Job {
         this.id = id;
         this.jobTitle = jobTitle;
         this.jobLink = jobLink;
-        this.jobId = jobId;
+        this.jobCodeId = jobId;
         this.companyId = companyId;
     }
 
@@ -50,12 +50,12 @@ public class Job {
         this.jobLink = jobLink;
     }
 
-    public String getJobId() {
-        return jobId;
+    public String getJobCodeId() {
+        return jobCodeId;
     }
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
+    public void setJobCodeId(String jobCodeId) {
+        this.jobCodeId = jobCodeId;
     }
 
     public Long getCompanyId() {
