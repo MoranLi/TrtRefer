@@ -10,8 +10,8 @@ public class Refer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long userId;
-    private Long referUserId;
+    private Long refererId;
+    private Long refereeId;
     private Long jobId;
     private Boolean accepted;
 
@@ -20,8 +20,8 @@ public class Refer {
 
     public Refer(Long id, Long userId, Long referUserId, Long jobId, Boolean accepted) {
         this.id = id;
-        this.userId = userId;
-        this.referUserId = referUserId;
+        this.refererId = userId;
+        this.refereeId = referUserId;
         this.jobId = jobId;
         this.accepted = accepted;
     }
@@ -34,20 +34,20 @@ public class Refer {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getRefererId() {
+        return refererId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setRefererId(Long refererId) {
+        this.refererId = refererId;
     }
 
-    public Long getReferUserId() {
-        return referUserId;
+    public Long getRefereeId() {
+        return refereeId;
     }
 
-    public void setReferUserId(Long referUserId) {
-        this.referUserId = referUserId;
+    public void setRefereeId(Long refereeId) {
+        this.refereeId = refereeId;
     }
 
     public Boolean getAccepted() {
