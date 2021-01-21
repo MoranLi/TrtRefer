@@ -12,14 +12,18 @@ public class Refer {
     private Long id;
     private Long userId;
     private Long referUserId;
+    private Long jobId;
+    private Boolean accepted;
 
     public Refer() {
     }
 
-    public Refer(Long id, Long userId, Long referUserId) {
+    public Refer(Long id, Long userId, Long referUserId, Long jobId, Boolean accepted) {
         this.id = id;
         this.userId = userId;
         this.referUserId = referUserId;
+        this.jobId = jobId;
+        this.accepted = accepted;
     }
 
     public Long getId() {
@@ -44,5 +48,21 @@ public class Refer {
 
     public void setReferUserId(Long referUserId) {
         this.referUserId = referUserId;
+    }
+
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public Long getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
     }
 }
