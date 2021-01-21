@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity
 public class Help {
@@ -11,7 +12,7 @@ public class Help {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private Long userId;
-    private String date;
+    private Date date;
     private Long companyId;
     private Long jobId;
     private Boolean status;
@@ -19,7 +20,7 @@ public class Help {
     public Help() {
     }
 
-    public Help(Long id, Long userId, String date, Long companyId, Long jobId, Boolean status) {
+    public Help(Long id, Long userId, Date date, Long companyId, Long jobId, Boolean status) {
         this.id = id;
         this.userId = userId;
         this.date = date;
@@ -44,11 +45,11 @@ public class Help {
         this.userId = userId;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
