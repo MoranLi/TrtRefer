@@ -1,12 +1,10 @@
-package com.trtrefer.banckend.service;
+package com.trtrefer.banckend.dbService;
 
-import com.trtrefer.banckend.entity.Help;
-import com.trtrefer.banckend.entity.Refer;
-import com.trtrefer.banckend.repository.HelpRepository;
+import com.trtrefer.banckend.dbEntity.Help;
+import com.trtrefer.banckend.dbRepository.HelpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -16,15 +14,8 @@ public class HelpService {
     @Autowired
     public HelpRepository helpRepository;
 
-    public Help addHelp(Long userId, Date date, Long companyId, Long jobId){
-        Help h = new Help();
-        h.setUserId(userId);
-        h.setDate(date);
-        h.setCompanyId(companyId);
-        h.setJobId(jobId);
-        h.setStatus(false);
+    public void addHelp(Help h){
         helpRepository.save(h);
-        return h;
     }
 
     public LinkedList<Help> getUserHelp(Long userId){
@@ -41,7 +32,7 @@ public class HelpService {
         Optional<Help> o = helpRepository.findById(helpId);
         if(o.isPresent()){
             Help h = o.get();
-            h.setStatus(true);
+            h.setAccepted(true);
             helpRepository.save(h);
             return true;
         }

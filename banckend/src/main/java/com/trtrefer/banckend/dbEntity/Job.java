@@ -1,14 +1,12 @@
-package com.trtrefer.banckend.entity;
+package com.trtrefer.banckend.dbEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.lang.reflect.Field;
 
 @Entity
+@Table(name = "jobs")
 public class Job {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+
     private Long id;
     private String jobTitle;
     private String jobLink;
@@ -26,6 +24,8 @@ public class Job {
         this.companyId = companyId;
     }
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -34,6 +34,7 @@ public class Job {
         this.id = id;
     }
 
+    @Column(name = "jobTitle")
     public String getJobTitle() {
         return jobTitle;
     }
@@ -42,6 +43,7 @@ public class Job {
         this.jobTitle = jobTitle;
     }
 
+    @Column(name = "jobLink")
     public String getJobLink() {
         return jobLink;
     }
@@ -50,6 +52,7 @@ public class Job {
         this.jobLink = jobLink;
     }
 
+    @Column(name = "jobCodeId")
     public String getJobCodeId() {
         return jobCodeId;
     }
@@ -58,6 +61,7 @@ public class Job {
         this.jobCodeId = jobCodeId;
     }
 
+    @Column(name = "companyId")
     public Long getCompanyId() {
         return companyId;
     }
@@ -65,4 +69,19 @@ public class Job {
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
+
+    public boolean containsNullField(){
+        try {
+            for (Field f : this.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.get(this) == null) {
+                    return true;
+                }
+            }
+        } catch (IllegalAccessException e){
+            return true;
+        }
+        return false;
+    }
+
 }

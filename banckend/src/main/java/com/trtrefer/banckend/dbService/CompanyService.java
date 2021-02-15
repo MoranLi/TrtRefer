@@ -1,9 +1,11 @@
-package com.trtrefer.banckend.service;
+package com.trtrefer.banckend.dbService;
 
-import com.trtrefer.banckend.entity.Company;
-import com.trtrefer.banckend.repository.CompanyRepository;
+import com.trtrefer.banckend.dbEntity.Company;
+import com.trtrefer.banckend.dbRepository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -11,19 +13,17 @@ public class CompanyService {
     @Autowired
     CompanyRepository companyRepository;
 
-    public void addCompany(String name){
-        Company c = new Company();
-        c.setCompanyName(name);
+    public void addCompany(Company c){
         companyRepository.save(c);
     }
 
-    public Long getCompany(String name){
+    public Optional<Long> getCompanyId(String name){
         for(Company c : companyRepository.findAll()){
             if (c.getCompanyName().equals(name)){
-                return c.getId();
+                Optional.of(c.getId());
             }
         }
-        return null;
+        return Optional.empty();
     }
 
 }
