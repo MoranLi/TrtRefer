@@ -1,5 +1,7 @@
 package com.trtrefer.banckend.dbEntity;
 
+import com.trtrefer.banckend.restEntity.RestRefer;
+
 import javax.persistence.*;
 import java.lang.reflect.Field;
 
@@ -16,12 +18,11 @@ public class Refer {
     public Refer() {
     }
 
-    public Refer(Long id, Long userId, Long referUserId, Long jobId, Boolean accepted) {
-        this.id = id;
-        this.refererId = userId;
-        this.refereeId = referUserId;
-        this.jobId = jobId;
-        this.accepted = accepted;
+    public Refer(RestRefer refer){
+        refereeId = refer.getRefereeId();
+        refererId = refer.getRefererId();
+        jobId = refer.getJobId();
+        accepted = refer.getAccepted();
     }
 
     @Id
@@ -70,18 +71,6 @@ public class Refer {
         this.jobId = jobId;
     }
 
-    public boolean containsNullField(){
-        try {
-            for (Field f : this.getClass().getDeclaredFields()) {
-                f.setAccessible(true);
-                if (f.get(this) == null) {
-                    return true;
-                }
-            }
-        } catch (IllegalAccessException e){
-            return true;
-        }
-        return false;
-    }
+
 
 }

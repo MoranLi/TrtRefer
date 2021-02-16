@@ -43,6 +43,7 @@ public class UserService {
         existUser.setEmail(u.getEmail());
         existUser.setCompanyId(u.getCompanyId());
         existUser.setWillingness(u.getWillingness());
+        userRepository.save(existUser);
         return true;
     }
 

@@ -22,4 +22,13 @@ public class JobService {
         return o;
     }
 
+    public Optional<Job> findJob(String jobLink){
+        for(Job job: jobRepository.findAll()){
+            if (job.getJobLink().equals(jobLink)){
+                return Optional.of(job);
+            }
+        }
+        return Optional.empty();
+    }
+
 }

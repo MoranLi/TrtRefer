@@ -5,12 +5,11 @@ import com.trtrefer.banckend.dbService.CompanyService;
 import com.trtrefer.banckend.dbService.UserService;
 import com.trtrefer.banckend.dbEntity.Company;
 import com.trtrefer.banckend.restEntity.Creditial;
+import com.trtrefer.banckend.restEntity.RestUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,26 +21,30 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    CompanyService companyService;
 
-    @PostMapping("/adduser")
-    public ResponseEntity addUser(@RequestBody User u){
+    @PostMapping("/user")
+    public ResponseEntity addUser(@RequestBody RestUser u){
         if(u.containsNullField()){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-        userService.addNewUser(u);
+        User user = new User(u);
+        userService.addNewUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping("/updateuser")
-    public ResponseEntity updateUser(@RequestBody User u){
+    @PutMapping("/user")
+    public ResponseEntity updateUser(@RequestBody RestUser u){
         if(u.containsNullField()){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-        if(!userService.updateUser(u)){
+        User user = new User(u);
+        if(!userService.updateUser(user)){
             return new ResponseEntity<String>("can not find user", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping("/user")
+    public ResponseEntity getUser(@RequestBody )
 
 }

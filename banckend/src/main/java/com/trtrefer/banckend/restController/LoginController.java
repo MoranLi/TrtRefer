@@ -23,7 +23,7 @@ public class LoginController {
         if(!userService.verifyUser(c.getUsername(),c.getPassword())){
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

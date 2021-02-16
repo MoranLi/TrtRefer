@@ -1,43 +1,19 @@
-package com.trtrefer.banckend.dbEntity;
+package com.trtrefer.banckend.restEntity;
 
-import com.trtrefer.banckend.restEntity.RestUser;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
 import java.lang.reflect.Field;
 
 @Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+public class RestUser {
     private String username;
     private String password;
     private String email;
     private Long companyId;
     private Boolean willingness;
 
-    public User() {
+    public RestUser() {
     }
 
-    public User(RestUser u){
-        username = u.getUsername();
-        password = u.getPassword();
-        email = u.getEmail();
-        willingness = u.getWillingness();
-    }
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -46,7 +22,6 @@ public class User {
         this.username = username;
     }
 
-    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -55,7 +30,6 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -64,7 +38,6 @@ public class User {
         this.email = email;
     }
 
-    @Column(name = "companyId")
     public Long getCompanyId() {
         return companyId;
     }
@@ -73,13 +46,26 @@ public class User {
         this.companyId = companyId;
     }
 
-    @Column(name = "willingness")
     public Boolean getWillingness() {
         return willingness;
     }
 
     public void setWillingness(Boolean willingness) {
         this.willingness = willingness;
+    }
+
+    public boolean containsNullField(){
+        try {
+            for (Field f : this.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.get(this) == null) {
+                    return true;
+                }
+            }
+        } catch (IllegalAccessException e){
+            return true;
+        }
+        return false;
     }
 
 }

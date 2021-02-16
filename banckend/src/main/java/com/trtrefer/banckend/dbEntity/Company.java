@@ -1,5 +1,7 @@
 package com.trtrefer.banckend.dbEntity;
 
+import com.trtrefer.banckend.restEntity.RestCompany;
+
 import javax.persistence.*;
 
 import java.lang.reflect.Field;
@@ -14,6 +16,14 @@ public class Company {
     private String companyName;
 
     public Company() {
+    }
+
+    public Company(RestCompany c){
+        companyName = c.getName();
+    }
+
+    public Company(String companyName) {
+        this.companyName = companyName;
     }
 
     @Id
@@ -35,19 +45,6 @@ public class Company {
         this.companyName = companyName;
     }
 
-    public boolean containsNullField(){
-        try {
-            for (Field f : this.getClass().getDeclaredFields()) {
-                f.setAccessible(true);
-                if (f.get(this) == null) {
-                    return true;
-                }
-            }
-        } catch (IllegalAccessException e){
-            return true;
-        }
-        return false;
-    }
 
 
 }

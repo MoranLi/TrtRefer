@@ -1,41 +1,20 @@
-package com.trtrefer.banckend.dbEntity;
+package com.trtrefer.banckend.restEntity;
 
-import com.trtrefer.banckend.restEntity.RestJob;
+import com.trtrefer.banckend.dbEntity.Job;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import java.lang.reflect.Field;
 
 @Entity
-@Table(name = "jobs")
-public class Job {
-
-    private Long id;
+public class RestJob {
     private String jobTitle;
     private String jobLink;
     private String jobCodeId;
     private Long companyId;
 
-    public Job() {
+    public RestJob() {
     }
 
-    public Job(RestJob restJob){
-        jobCodeId = restJob.getJobCodeId();
-        jobLink = restJob.getJobLink();
-        jobTitle = restJob.getJobTitle();
-        companyId = restJob.getCompanyId();
-    }
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "jobTitle")
     public String getJobTitle() {
         return jobTitle;
     }
@@ -44,7 +23,6 @@ public class Job {
         this.jobTitle = jobTitle;
     }
 
-    @Column(name = "jobLink")
     public String getJobLink() {
         return jobLink;
     }
@@ -53,7 +31,6 @@ public class Job {
         this.jobLink = jobLink;
     }
 
-    @Column(name = "jobCodeId")
     public String getJobCodeId() {
         return jobCodeId;
     }
@@ -62,7 +39,6 @@ public class Job {
         this.jobCodeId = jobCodeId;
     }
 
-    @Column(name = "companyId")
     public Long getCompanyId() {
         return companyId;
     }
